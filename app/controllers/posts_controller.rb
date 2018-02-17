@@ -14,7 +14,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @tags = Tag.all
     @post = Post.new
+    @post.tags.build()
   end
 
   # GET /posts/1/edit
@@ -25,7 +27,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -40,6 +41,14 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    # post_tag_ids = post_params["tags"].reject { |t| t.empty? }
+    # if !post_tag_ids.empty?
+    #   post_tags = []
+    #   post_tag_ids.each do |t|
+    #     found_tag = Tag.find_by(id: t)
+    #     post_tags << found_tag if found_tag
+    #   end
+    # end
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -69,6 +78,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name)
+      params.require(:post).permit(:name, :content, tags_attributes: {"ids" => []} )
     end
 end

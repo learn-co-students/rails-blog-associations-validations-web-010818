@@ -38,9 +38,10 @@ group :test, :development do
   gem "selenium-webdriver"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "simplecov"
   gem "database_cleaner"
   gem "sqlite3"
   gem "pry"
+  gem "haml-rails"
 end
