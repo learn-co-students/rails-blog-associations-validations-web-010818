@@ -41,14 +41,6 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    # post_tag_ids = post_params["tags"].reject { |t| t.empty? }
-    # if !post_tag_ids.empty?
-    #   post_tags = []
-    #   post_tag_ids.each do |t|
-    #     found_tag = Tag.find_by(id: t)
-    #     post_tags << found_tag if found_tag
-    #   end
-    # end
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
